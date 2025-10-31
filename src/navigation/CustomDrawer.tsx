@@ -9,15 +9,15 @@ const CustomDrawer: React.FC<DrawerContentComponentProps> = props => {
   const {navigation, state} = props;
 
   const menuItems = [
-    {name: 'Home', route: 'HomeTabs', params: {screen: 'HomeTab'}, icon: '🏠'},
-    {name: 'Cart', route: 'HomeTabs', params: {screen: 'Cart'}, icon: '🛒'},
+    {name: 'Home', route: 'HomeTabs', params: {screen: 'HomeTab'}, icon: ''},
+    {name: 'Cart', route: 'HomeTabs', params: {screen: 'Cart'}, icon: ''},
     {
       name: 'Favourites',
       route: 'HomeTabs',
       params: {screen: 'Favourites'},
-      icon: '❤️',
+      icon: '',
     },
-    {name: 'Orders', route: 'Orders', icon: '📦'},
+    {name: 'Orders', route: 'Orders', icon: ''},
   ];
 
   const handleNavigation = (route: string, params?: any) => {
@@ -67,6 +67,10 @@ const CustomDrawer: React.FC<DrawerContentComponentProps> = props => {
             </TouchableOpacity>
           );
         })}
+        <View style={styles.divider} />
+        <TouchableOpacity style={styles.signOutButton} onPress={() => {}}>
+          <Text style={styles.signOutText}>Sign Out</Text>
+        </TouchableOpacity>
       </DrawerContentScrollView>
     </View>
   );
@@ -79,12 +83,14 @@ const styles = StyleSheet.create({
   },
   header: {
     padding: 20,
-    paddingTop: 60,
+    paddingTop: 80,
+    alignItems: 'center',
   },
   logo: {
     fontSize: 32,
     fontWeight: 'bold',
     color: '#fff',
+    textAlign: 'center',
   },
   scrollContent: {
     paddingTop: 20,
@@ -98,7 +104,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
   },
   menuItemActive: {
-    backgroundColor: '#0f3460',
+    backgroundColor: '#4a1a1a',
   },
   icon: {
     fontSize: 24,
@@ -111,6 +117,22 @@ const styles = StyleSheet.create({
   menuTextActive: {
     color: '#fff',
     fontWeight: '600',
+  },
+  divider: {
+    height: 1,
+    backgroundColor: '#2d2d44',
+    marginHorizontal: 20,
+    marginVertical: 20,
+  },
+  signOutButton: {
+    paddingVertical: 16,
+    paddingHorizontal: 20,
+    marginHorizontal: 10,
+    borderRadius: 8,
+  },
+  signOutText: {
+    fontSize: 18,
+    color: '#b0b0b0',
   },
 });
 

@@ -23,7 +23,7 @@ const DrawerNavigator: React.FC = () => {
         overlayColor: 'transparent',
         drawerStyle: {
           flex: 1,
-          width: '60%',
+          width: '45%',
           backgroundColor:  '#1a1a2e',
         },
         headerStyle: {
@@ -47,7 +47,7 @@ const DrawerNavigator: React.FC = () => {
       <Drawer.Screen
         name="Orders"
         options={{
-          header: () => <CustomHeader title="My Orders" />,
+          header: () => <CustomHeader title="My Orders" backgroundColor="#fff" />,
         }}>
         {props => <AnimatedDrawerContent {...props} component={OrdersScreen} />}
       </Drawer.Screen>

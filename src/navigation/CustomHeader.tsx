@@ -5,13 +5,14 @@ import {useNavigation} from '@react-navigation/native';
 
 type CustomHeaderProps = {
   title: string;
+  backgroundColor?: string;
 };
 
-const CustomHeader: React.FC<CustomHeaderProps> = ({title}) => {
+const CustomHeader: React.FC<CustomHeaderProps> = ({title, backgroundColor}) => {
   const navigation = useNavigation<DrawerNavigationProp<any>>();
 
   return (
-    <View style={styles.header}>
+    <View style={[styles.header, backgroundColor && {backgroundColor}]}>
       <TouchableOpacity
         style={styles.menuButton}
         onPress={() => navigation.openDrawer()}>
@@ -32,7 +33,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    backgroundColor: '#007AFF',
     paddingHorizontal: 16,
     paddingVertical: 12,
     height: 56,
@@ -49,13 +49,13 @@ const styles = StyleSheet.create({
   },
   menuLine: {
     height: 3,
-    backgroundColor: '#fff',
+    backgroundColor: '#000',
     borderRadius: 2,
   },
   title: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#fff',
+    color: '#000',
     flex: 1,
     textAlign: 'center',
   },

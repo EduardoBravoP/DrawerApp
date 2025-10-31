@@ -20,8 +20,8 @@ const AnimatedDrawerContent: React.FC<AnimatedDrawerContentProps> = ({
   const progress = useDrawerProgress();
 
   const animatedStyle = useAnimatedStyle(() => {
-    const scale = interpolate(progress.value, [0, 1], [1, 0.8]);
-    const translateX = interpolate(progress.value, [0, 1], [0, width * 0.2]);
+    const scale = interpolate(progress.value, [0, 1], [1, 0.9]);
+    const translateX = interpolate(progress.value, [0, 1], [0, width * 0.15]);
     const rotate = interpolate(progress.value, [0, 1], [0, -10]);
     const borderRadius = interpolate(progress.value, [0, 1], [0, 20]);
 
