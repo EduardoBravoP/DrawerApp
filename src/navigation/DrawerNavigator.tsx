@@ -4,6 +4,7 @@ import BottomTabNavigator from './BottomTabNavigator';
 import OrdersScreen from '../screens/OrdersScreen';
 import CustomDrawer from './CustomDrawer';
 import AnimatedDrawerContent from './AnimatedDrawerContent';
+import CustomHeader from './CustomHeader';
 
 export type DrawerParamList = {
   HomeTabs: undefined;
@@ -23,7 +24,7 @@ const DrawerNavigator: React.FC = () => {
         drawerStyle: {
           flex: 1,
           width: '60%',
-          backgroundColor: 'transparent',
+          backgroundColor:  '#1a1a2e',
         },
         headerStyle: {
           backgroundColor: '#007AFF',
@@ -32,6 +33,9 @@ const DrawerNavigator: React.FC = () => {
         headerTitleStyle: {
           fontWeight: 'bold',
         },
+        sceneStyle: {
+          backgroundColor: '#1a1a2e',
+        }
       }}>
       <Drawer.Screen
         name="HomeTabs"
@@ -40,7 +44,11 @@ const DrawerNavigator: React.FC = () => {
         }}>
         {props => <AnimatedDrawerContent {...props} component={BottomTabNavigator} />}
       </Drawer.Screen>
-      <Drawer.Screen name="Orders" options={{title: 'My Orders'}}>
+      <Drawer.Screen
+        name="Orders"
+        options={{
+          header: () => <CustomHeader title="My Orders" />,
+        }}>
         {props => <AnimatedDrawerContent {...props} component={OrdersScreen} />}
       </Drawer.Screen>
     </Drawer.Navigator>

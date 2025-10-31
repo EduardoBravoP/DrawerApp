@@ -21,8 +21,8 @@ const AnimatedDrawerContent: React.FC<AnimatedDrawerContentProps> = ({
 
   const animatedStyle = useAnimatedStyle(() => {
     const scale = interpolate(progress.value, [0, 1], [1, 0.8]);
-    const translateX = interpolate(progress.value, [0, 1], [0, width * 0.5]);
-    const rotateY = interpolate(progress.value, [0, 1], [0, -10]);
+    const translateX = interpolate(progress.value, [0, 1], [0, width * 0.2]);
+    const rotate = interpolate(progress.value, [0, 1], [0, -10]);
     const borderRadius = interpolate(progress.value, [0, 1], [0, 20]);
 
     return {
@@ -30,7 +30,7 @@ const AnimatedDrawerContent: React.FC<AnimatedDrawerContentProps> = ({
         {perspective: 1000},
         {scale},
         {translateX},
-        {rotateY: `${rotateY}deg`},
+        {rotate: `${rotate}deg`},
       ],
       borderRadius,
       overflow: 'hidden',
@@ -47,7 +47,7 @@ const AnimatedDrawerContent: React.FC<AnimatedDrawerContentProps> = ({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#1a1a2e',
   },
 });
 

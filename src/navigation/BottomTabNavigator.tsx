@@ -3,6 +3,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import HomeStackNavigator from './HomeStackNavigator';
 import CartScreen from '../screens/CartScreen';
 import FavouritesScreen from '../screens/FavouritesScreen';
+import CustomHeader from './CustomHeader';
 
 export type BottomTabParamList = {
   HomeTab: undefined;
@@ -32,8 +33,22 @@ const BottomTabNavigator: React.FC = () => {
           tabBarLabel: 'Home',
         }}
       />
-      <Tab.Screen name="Cart" component={CartScreen} />
-      <Tab.Screen name="Favourites" component={FavouritesScreen} />
+      <Tab.Screen
+        name="Cart"
+        component={CartScreen}
+        options={{
+          headerShown: true,
+          header: () => <CustomHeader title="Cart" />,
+        }}
+      />
+      <Tab.Screen
+        name="Favourites"
+        component={FavouritesScreen}
+        options={{
+          headerShown: true,
+          header: () => <CustomHeader title="Favourites" />,
+        }}
+      />
     </Tab.Navigator>
   );
 };

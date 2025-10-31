@@ -9,7 +9,7 @@ const CustomDrawer: React.FC<DrawerContentComponentProps> = props => {
   const {navigation, state} = props;
 
   const menuItems = [
-    {name: 'Home', route: 'HomeTabs', icon: '🏠'},
+    {name: 'Home', route: 'HomeTabs', params: {screen: 'HomeTab'}, icon: '🏠'},
     {name: 'Cart', route: 'HomeTabs', params: {screen: 'Cart'}, icon: '🛒'},
     {
       name: 'Favourites',
@@ -33,12 +33,23 @@ const CustomDrawer: React.FC<DrawerContentComponentProps> = props => {
         {...props}
         contentContainerStyle={styles.scrollContent}>
         {menuItems.map((item, index) => {
-          const isFocused =
-            state.routeNames[state.index] === item.route ||
-            (item.params?.screen &&
-              state.routes[state.index]?.state?.routes?.[
-                state.routes[state.index]?.state?.index || 0
-              ]?.name === item.params.screen);
+          const currentRoute = state.routes[state.index];
+          const isOnHomeTabs = state.routeNames[state.index] === 'HomeTabs';
+          const nestedTabName = currentRoute?.state?.routes?.[
+            currentRoute?.state?.index || 0
+          ]?.name;
+
+          let isFocused = false;
+          if (item.params?.screen) {
+            // For Cart and Favourites: only active if on HomeTabs AND the nested tab matches
+            isFocused = isOnHomeTabs && nestedTabName === item.params.screen;
+          } else if (item.route === 'HomeTabs') {
+            // For Home: only active if on HomeTabs AND the nested tab is HomeTab
+            isFocused = isOnHomeTabs && nestedTabName === 'HomeTab';
+          } else {
+            // For Orders: just check if the route matches
+            isFocused = state.routeNames[state.index] === item.route;
+          }
 
           return (
             <TouchableOpacity
@@ -69,7 +80,6 @@ const styles = StyleSheet.create({
   header: {
     padding: 20,
     paddingTop: 60,
-    backgroundColor: '#16213e',
   },
   logo: {
     fontSize: 32,
