@@ -23,6 +23,9 @@ target 'DrawerApp' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
+  # RNWorklets dependency for RNReanimated
+  pod 'RNWorklets', :path => '../node_modules/react-native-worklets'
+
   post_install do |installer|
     react_native_post_install(
       installer,
